@@ -1,0 +1,41 @@
+<%= form_for @user do |f| %>
+<p class='form-validation-error'> <%= flash[:message]%> </p>
+
+<div class="form-group">
+  <%= f.label :first_name %>
+  <br>
+  <%= f.text_field :first_name, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :last_name %>
+  <br>
+  <%= f.text_field :last_name, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :email %>
+  <br>
+  <%= f.text_field :email, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :password, 'password(must be 8 characters or more):' %>
+  <br>
+  <%= f.password_field :password, class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :owner, "Check box if you are a business owner" %>
+  <%= f.check_box :owner, class: "form-check-input" %>
+</div>
+
+<div class="actions">
+  <br />
+  <%= f.submit class: "btn btn-primary" %>
+</div>
+
+<% end %>
+
+
+<%= button_to "Log in with Google", '/auth/google_oauth2' %>
