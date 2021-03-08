@@ -1,1 +1,40 @@
-<%= render 'form' %>
+<div class='columns mt-3 mx-4'>
+  <div class='column is-8 is-offset-2 box p-6'>
+    <%= form_for @user, html: {class: ' container columns is-multiline'}  do |f| %>
+    <div class="column is-12">
+      <h1 class='title has-text-centered mb-4'>Sign Up</h1>
+    </div>
+
+    <div class="field column is-12">
+      <p class='has-text-danger	'> <%= flash[:message]%> </p>
+    </div>
+
+    <div class="field column is-6">
+      <%= f.label :first_name, class: "label" %>
+      <%= f.text_field :first_name, class: "input" %>
+    </div>
+    <div class="field column is-6">
+      <%= f.label :last_name, class: "label" %>
+      <%= f.text_field :last_name, class: "input" %>
+    </div>
+    <div class="field column is-6">
+      <%= f.label :email, class: "label" %>
+      <%= f.text_field :email, class: "input" %>
+    </div>
+    <div class="field column is-6">
+      <%= f.label :password, class: "label" %>
+      <%= f.text_field :password, class: "input" %>
+    </div>
+
+    <div class="field column is-12">
+      <%= f.check_box :owner %>
+      <%= f.label :owner, "Check box if you are a business owner" %>
+    </div>
+
+    <div class="column is-12">
+      <%= f.submit class: "button is-info mr-3" %>
+    </div>
+    <% end %>
+    <%= button_to "Log in with Google", '/auth/google_oauth2', class: "button is-danger" %>
+  </div>
+</div>

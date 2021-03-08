@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "hours.scss"
+    ],
+    "names": [],
+    "file": "hours.min.css"
+}

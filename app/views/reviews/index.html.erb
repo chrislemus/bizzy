@@ -1,0 +1,32 @@
+<div class='container  is-max-desktop'>
+  <%= link_to "< Home", root_path, class: 'button is-primary' %>
+  <%= link_to "Write a review", new_business_review_path, class: 'button is-primary' %>
+  <h1 class='title mb-0'>Review and rating</h1>
+  <h6 class='mb-5 title is-size-6'>Business: <%=@business.name%></h6>
+  <%@reviews.each do |review|%>
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-34x34 ">
+        <img src=<%="#{review.user.thumbnail}"%>>
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <div class='columns'>
+          <div class='column'>
+            <p>
+              <strong><%=review.user.full_name%></strong>
+              <br>
+              <%=review.content%>
+            </p>
+          </div>
+          <div class='column is-narrow '>
+            <p class='has-text-success'><%=review.rating_with_stars%></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+  <%end%>
+</div>

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :businesses, :foreign_key => 'owner_id'
+  has_many :reviews
+
+
   validates :email, presence: true
   validates :first_name, presence: true
   validates :email, uniqueness: true
@@ -6,14 +10,11 @@ class User < ApplicationRecord
   has_secure_password
 
 
-  def self.find_or_create_omni(auth)
-    user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
-      u.first_name = auth['info']['first_name']
-      u.last_name = auth['info']['last_name']
-      u.email = auth['info']['email']
-    end
-    user.password = SecureRandom.hex(16)
-    user
+
+  def full_name
+    full_name = first_name
+    full_name += " #{last_name}" if !last_name.empty?
+    full_name
   end
 
 end

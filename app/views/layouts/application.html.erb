@@ -12,15 +12,38 @@
 </head>
 
 <body>
-  <%if current_user%>
-  <p>Id: <%=current_user.id%> </p>
-  <p>email: <%=current_user.email%> </p>
-  <%end%>
+  <nav class="max-width notification is-primary is-radiusless">
+    <div class=" columns is-centered is-vcentered">
+      <div class="column is-one-quarter">
+        <%=session[:user_id]%>
+        <%= link_to "Bizzy", root_path, class: 'is-size-3 has-text-weight-boldutton'%>
+      </div>
+      <div class="column">
+      </div>
+      <%if logged_in%>
+      <div class="column is-narrow">
+        <p class='has-text-weight-semibold'><%=user_full_name%></p>
+      </div>
+      <div class="column is-narrow">
+        <%= link_to "Log Out", session_path,method:'delete', class: 'button' %>
+      </div>
+      <%else%>
+      <div class="column is-narrow">
+        <%= link_to "Sign in", '/signin', class: 'button'%>
+      </div>
+      <div class="column is-narrow">
+        <%= link_to "Sign up", '/signup', class: 'button' %>
+      </div>
+      <%end%>
+    </div>
+  </nav>
 
-  <%= link_to "Log Out", session_path,method:'delete' %>
-  <%= link_to "Sign in", '/signin' %>
-  <%= link_to "Sign up", '/signup' %>
-  <%= yield %>
+  <div class='container'>
+    <%= yield %>
+    <%User.all.each do |u|%>
+
+    <%end%>
+  </div>
 </body>
 
 </html>

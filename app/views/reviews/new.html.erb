@@ -1,0 +1,23 @@
+<%= form_for [@business, @review], html: {class: 'box'} do |f| %>
+<p class=''> <%= flash[:message]%> </p>
+
+<div class='select'>
+  <select id="review_rating" name="review[rating]">
+    <option value="1">5</option>
+    <option value="2">4</option>
+    <option value="3">3</option>
+    <option value="2">2</option>
+    <option value="1">1</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "textarea" %>
+</div>
+
+<%=f.hidden_field :business%>
+
+<%= f.submit class: "mt-3 button is-info" %>
+
+<% end %>

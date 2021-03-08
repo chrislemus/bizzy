@@ -10,37 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_123302) do
+ActiveRecord::Schema.define(version: 2021_03_05_134323) do
 
   create_table "businesses", force: :cascade do |t|
-    t.integer "review_id"
-    t.integer "owner_id_id"
-    t.string "hours"
+    t.integer "owner_id"
+    t.integer "hour_id"
+    t.integer "category_id"
+    t.string "name"
     t.string "phone"
     t.string "address"
     t.string "city"
     t.string "state"
-    t.string "zip"
+    t.integer "zip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id_id"], name: "index_businesses_on_owner_id_id"
-    t.index ["review_id"], name: "index_businesses_on_review_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.time "monday_open"
+    t.time "monday_close"
+    t.time "tuesday_open"
+    t.time "tuesday_close"
+    t.time "wednesday_open"
+    t.time "wednesday_close"
+    t.time "thursday_open"
+    t.time "thursday_close"
+    t.time "friday_open"
+    t.time "friday_close"
+    t.time "saturday_open"
+    t.time "saturday_close"
+    t.time "sunday_open"
+    t.time "sunday_close"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
-    t.text "description"
-    t.integer "user_id_id", null: false
-    t.integer "business_id_id", null: false
+    t.text "content"
+    t.integer "user_id"
+    t.integer "business_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["business_id_id"], name: "index_reviews_on_business_id_id"
-    t.index ["user_id_id"], name: "index_reviews_on_user_id_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "thumbnail"
     t.string "email"
     t.string "password_digest"
     t.string "uid"
@@ -50,8 +73,4 @@ ActiveRecord::Schema.define(version: 2021_03_04_123302) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "businesses", "owner_ids"
-  add_foreign_key "businesses", "reviews"
-  add_foreign_key "reviews", "business_ids"
-  add_foreign_key "reviews", "user_ids"
 end
