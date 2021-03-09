@@ -22,7 +22,6 @@ owners = User.create([
     email: "owner1@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/men/50.jpg",
-    owner: true
   },
   {
     first_name: "Sally",
@@ -30,7 +29,6 @@ owners = User.create([
     email: "owner2@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/women/91.jpg",
-    owner: true
   },
   {
     first_name: "Colleen",
@@ -38,7 +36,6 @@ owners = User.create([
     email: "owner3@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/women/29.jpg",
-    owner: true
   },
   {
     first_name: "Arthur",
@@ -46,7 +43,6 @@ owners = User.create([
     email: "owner4@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/men/58.jpg",
-    owner: true
   },
   {
     first_name: "Jeffery",
@@ -54,7 +50,6 @@ owners = User.create([
     email: "owner5@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/men/9.jpg",
-    owner: true
   },
   {
     first_name: "Marcus",
@@ -62,7 +57,6 @@ owners = User.create([
     email: "owner6@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/men/90.jpg",
-    owner: true
   },
   {
     first_name: "Nellie",
@@ -70,7 +64,6 @@ owners = User.create([
     email: "owner7@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/women/31.jpg",
-    owner: true
   },
   {
     first_name: "Jeff",
@@ -78,7 +71,6 @@ owners = User.create([
     email: "owner8@example.com",
     password: "12345678",
     thumbnail: "https://randomuser.me/api/portraits/thumb/men/70.jpg",
-    owner: true
   }
 ])
 
@@ -249,28 +241,17 @@ users = User.create([
 #===============================================
 # Hours seed 
 #===============================================
-#fri-sat 7pm-12am
-club_hours = Hour.create(friday_open: '19:00', friday_close: '24:00', saturday_open: '19:00', saturday_close: '24:00')
+
 
 #mon-fri 9-10
-mon_fri_hours = Hour.create(
+mon_fri_hours = {
   monday_open: '09:00', monday_close: '22:00',
   tuesday_open: '09:00', tuesday_close: '22:00',
   wednesday_open: '09:00', wednesday_close: '22:00',
   thursday_open: '09:00', thursday_close: '22:00',
   friday_open: '09:00', friday_close: '22:00'
-)
+}
 
-#mon-sun 10-6
-mall_hours = Hour.create(
-  monday_open: '10:00', monday_close: '18:00',
-  tuesday_open: '10:00', tuesday_close: '18:00',
-  wednesday_open: '10:00', wednesday_close: '18:00',
-  thursday_open: '10:00', thursday_close: '18:00',
-  friday_open: '10:00', friday_close: '18:00',
-  saturday_open: '10:00', saturday_close: '18:00',
-  sunday_open: '10:00', sunday_close: '18:00'
-)
 
 
 #===============================================
@@ -291,11 +272,7 @@ category = {
 #===============================================
 # Business seed 
 #===============================================
-reg_hours = [mon_fri_hours, mall_hours]
 
-def rand_reg_hours(reg_hours)
-  reg_hours[rand(reg_hours.length)]
-end
 
 def rand_owner(owners)
   owners[rand(owners.length)]
@@ -308,8 +285,6 @@ businesses = Business.create([
     state: "CT",
     zip: 41087,
     phone: "(576)-870-5437",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Bikini Bottom',
     category: category[:clothing]
   },
@@ -319,8 +294,6 @@ businesses = Business.create([
     state: "WI",
     zip: 74051,
     phone: "(175)-339-2884",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Fashion Plus',
     category: category[:clothing]
   },
@@ -330,8 +303,6 @@ businesses = Business.create([
     state: "MS",
     zip: 85480,
     phone: "(272)-103-6193",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'China Imports',
     category: category[:clothing]
   },
@@ -341,8 +312,6 @@ businesses = Business.create([
     state: "MT",
     zip: 36834,
     phone: "(109)-605-5527",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Gappy',
     category: category[:clothing]
   },
@@ -352,8 +321,6 @@ businesses = Business.create([
     state: "TN",
     zip: 21221,
     phone: "(163)-252-7108",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Forever2020',
     category: category[:clothing]
   },
@@ -363,8 +330,6 @@ businesses = Business.create([
     state: "OK",
     zip: 98147,
     phone: "(884)-356-8187",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Stringless',
     category: category[:clothing]
   },
@@ -374,8 +339,6 @@ businesses = Business.create([
     state: "AR",
     zip: 59102,
     phone: "(426)-923-1066",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'MyStylez',
     category: category[:clothing]
   },
@@ -385,8 +348,6 @@ businesses = Business.create([
     state: "VA",
     zip: 72164,
     phone: "(968)-946-9219",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'The Runway',
     category: category[:clothing]
   },
@@ -396,8 +357,6 @@ businesses = Business.create([
     state: "OH",
     zip: 82711,
     phone: "(136)-681-5569",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Khardasians Closet',
     category: category[:clothing]
   },
@@ -407,8 +366,6 @@ businesses = Business.create([
     state: "WY",
     zip: 32134,
     phone: "(105)-424-4941",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Jeezy Steal',
     category: category[:clothing]
   },
@@ -418,8 +375,6 @@ businesses = Business.create([
     state: "HI",
     zip: 41825,
     phone: "(688)-862-1061",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Jumpman Land',
     category: category[:clothing]
   },
@@ -429,8 +384,6 @@ businesses = Business.create([
     state: "IA",
     zip: 98811,
     phone: "(534)-505-6847",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Marshalllls',
     category: category[:clothing]
   },
@@ -440,8 +393,6 @@ businesses = Business.create([
     state: "KS",
     zip: 80967,
     phone: "(802)-159-1151",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Sleek Looks',
     category: category[:clothing]
   },
@@ -451,8 +402,6 @@ businesses = Business.create([
     state: "ME",
     zip: 43417,
     phone: "(922)-000-9154",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Stunning',
     category: category[:clothing]
   },
@@ -462,8 +411,6 @@ businesses = Business.create([
     state: "ME",
     zip: 67003,
     phone: "(261)-759-4052",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Below 5',
     category: category[:clothing]
   },
@@ -473,8 +420,6 @@ businesses = Business.create([
     state: "MO",
     zip: 94562,
     phone: "(259)-805-5721",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Fresh Looks',
     category: category[:clothing]
   },
@@ -484,8 +429,6 @@ businesses = Business.create([
     state: "NY",
     zip: 21676,
     phone: "(506)-612-7664",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Good Eats',
     category: category[:restaurant]
   },
@@ -495,8 +438,6 @@ businesses = Business.create([
     state: "MS",
     zip: 69399,
     phone: "(867)-952-0521",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Fatty Plus',
     category: category[:restaurant]
   },
@@ -506,8 +447,6 @@ businesses = Business.create([
     state: "OH",
     zip: 89906,
     phone: "(145)-955-2094",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Holly Burger',
     category: category[:restaurant]
   },
@@ -517,8 +456,6 @@ businesses = Business.create([
     state: "NH",
     zip: 88355,
     phone: "(216)-155-9153",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Bread N Butter',
     category: category[:restaurant]
   },
@@ -528,8 +465,6 @@ businesses = Business.create([
     state: "AZ",
     zip: 73462,
     phone: "(747)-860-4487",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Pork Chop',
     category: category[:restaurant]
   },
@@ -539,8 +474,6 @@ businesses = Business.create([
     state: "TX",
     zip: 16891,
     phone: "(763)-224-3315",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Plant Base',
     category: category[:restaurant]
   },
@@ -550,8 +483,6 @@ businesses = Business.create([
     state: "ID",
     zip: 67821,
     phone: "(044)-499-8260",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Cholesterol Land',
     category: category[:restaurant]
   },
@@ -561,8 +492,6 @@ businesses = Business.create([
     state: "OK",
     zip: 20634,
     phone: "(501)-908-3013",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Eats 4 Two',
     category: category[:restaurant]
   },
@@ -572,8 +501,6 @@ businesses = Business.create([
     state: "AK",
     zip: 86552,
     phone: "(763)-915-2314",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Yummy Tummy',
     category: category[:restaurant]
   },
@@ -583,8 +510,6 @@ businesses = Business.create([
     state: "NE",
     zip: 87316,
     phone: "(790)-302-8962",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Hunger Beast',
     category: category[:restaurant]
   },
@@ -594,8 +519,6 @@ businesses = Business.create([
     state: "NE",
     zip: 34806,
     phone: "(941)-209-6540",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Delicious Bread',
     category: category[:restaurant]
   },
@@ -605,8 +528,6 @@ businesses = Business.create([
     state: "MI",
     zip: 43603,
     phone: "(671)-561-4555",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Biscuit World',
     category: category[:restaurant]
   },
@@ -616,8 +537,6 @@ businesses = Business.create([
     state: "GA",
     zip: 71956,
     phone: "(098)-682-9772",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'No Diet',
     category: category[:restaurant]
   },
@@ -627,8 +546,6 @@ businesses = Business.create([
     state: "MI",
     zip: 19483,
     phone: "(645)-073-7281",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Food N Me',
     category: category[:restaurant]
   },
@@ -638,8 +555,6 @@ businesses = Business.create([
     state: "NV",
     zip: 12485,
     phone: "(016)-240-2418",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Food Bank',
     category: category[:restaurant]
   },
@@ -649,8 +564,6 @@ businesses = Business.create([
     state: "MN",
     zip: 37572,
     phone: "(767)-941-3636",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: "Chef's Touch",
     category: category[:restaurant]
   },
@@ -660,8 +573,6 @@ businesses = Business.create([
     state: "RI",
     zip: 25781,
     phone: "(104)-875-6565",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Eeeets',
     category: category[:restaurant]
   },
@@ -671,8 +582,6 @@ businesses = Business.create([
     state: "ID",
     zip: 20961,
     phone: "(643)-090-9392",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Meat Ville',
     category: category[:restaurant]
   },
@@ -682,8 +591,6 @@ businesses = Business.create([
     state: "WY",
     zip: 47932,
     phone: "(810)-137-9515",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Young Again',
     category: category[:beauty]
   },
@@ -693,8 +600,6 @@ businesses = Business.create([
     state: "MO",
     zip: 95283,
     phone: "(998)-125-5821",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Ulta High Prices',
     category: category[:beauty]
   },
@@ -704,8 +609,6 @@ businesses = Business.create([
     state: "AZ",
     zip: 73222,
     phone: "(354)-777-3457",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Whole Sale Beauty Supply',
     category: category[:beauty]
   },
@@ -715,8 +618,6 @@ businesses = Business.create([
     state: "CT",
     zip: 79350,
     phone: "(645)-401-5453",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Marys Hair Salon',
     category: category[:beauty]
   },
@@ -726,8 +627,6 @@ businesses = Business.create([
     state: "AZ",
     zip: 51997,
     phone: "(253)-866-8753",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Lushy',
     category: category[:beauty]
   },
@@ -737,8 +636,6 @@ businesses = Business.create([
     state: "HI",
     zip: 62740,
     phone: "(040)-307-2906",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Cosmetics',
     category: category[:beauty]
   },
@@ -748,8 +645,6 @@ businesses = Business.create([
     state: "MA",
     zip: 70106,
     phone: "(868)-717-4715",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Uplift Cosmetologyy Experts',
     category: category[:beauty]
   },
@@ -759,8 +654,6 @@ businesses = Business.create([
     state: "IL",
     zip: 97612,
     phone: "(787)-686-1506",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'FattyLess',
     category: category[:fitness]
   },
@@ -770,8 +663,6 @@ businesses = Business.create([
     state: "DE",
     zip: 99158,
     phone: "(922)-101-6003",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Planet Skinny',
     category: category[:fitness]
   },
@@ -781,8 +672,6 @@ businesses = Business.create([
     state: "NC",
     zip: 58528,
     phone: "(177)-357-3682",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Strong Lifts',
     category: category[:fitness]
   },
@@ -792,8 +681,6 @@ businesses = Business.create([
     state: "KY",
     zip: 39273,
     phone: "(800)-646-5996",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Dumbbells',
     category: category[:fitness]
   },
@@ -803,8 +690,6 @@ businesses = Business.create([
     state: "NV",
     zip: 16911,
     phone: "(776)-503-7147",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Workout Flex',
     category: category[:fitness]
   },
@@ -814,8 +699,6 @@ businesses = Business.create([
     state: "IN",
     zip: 74144,
     phone: "(289)-131-7374",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Strong Works',
     category: category[:fitness]
   },
@@ -825,8 +708,6 @@ businesses = Business.create([
     state: "PA",
     zip: 25642,
     phone: "(071)-276-1765",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Dedicated',
     category: category[:fitness]
   },
@@ -836,8 +717,6 @@ businesses = Business.create([
     state: "WY",
     zip: 49544,
     phone: "(205)-641-3647",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Fitness Me',
     category: category[:fitness]
   },
@@ -847,8 +726,6 @@ businesses = Business.create([
     state: "WI",
     zip: 64747,
     phone: "(212)-346-8790",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Handy Dan',
     category: category[:home_repair]
   },
@@ -858,8 +735,6 @@ businesses = Business.create([
     state: "MD",
     zip: 39672,
     phone: "(543)-745-4318",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'iFix It',
     category: category[:home_repair]
   },
@@ -869,101 +744,102 @@ businesses = Business.create([
     state: "IN",
     zip: 83481,
     phone: "(565)-179-7776",
-    owner: rand_owner(owners),
-    hour: rand_reg_hours(reg_hours),
     name: 'Handy Works',
     category: category[:home_repair]
-  },
-  {
-    name: 'Get Lit',
-    category: category[:night_club],
-    address: "9504 Mockingbird Hill",
-    city: "Jackson",
-    state: "SC",
-    zip: 89866,
-    phone: "(006)-532-9475",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Firehouse',
-    category: category[:night_club],
-    address: "1163 First Street",
-    city: "Lafayette",
-    state: "NV",
-    zip: 27110,
-    phone: "(551)-014-9983",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Space X',
-    category: category[:night_club],
-    address: "9280 Brown Terrace",
-    city: "Nampa",
-    state: "VT",
-    zip: 61144,
-    phone: "(050)-505-0484",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Coders',
-    category: category[:night_club],
-    address: "6150 Hogan St",
-    city: "Princeton",
-    state: "SC",
-    zip: 63568,
-    phone: "(764)-782-0628",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Pipe UP',
-    category: category[:night_club],
-    address: "1472 Northaven Rd",
-    city: "Lowell",
-    state: "NE",
-    zip: 59892,
-    phone: "(019)-768-6365",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Turn Up',
-    category: category[:night_club],
-    address: "431 Green Rd",
-    city: "Bernalillo",
-    state: "S.D.",
-    zip: 37349,
-    phone: "(145)-336-5088",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Day N Nite',
-    category: category[:night_club],
-    address: "534 W Belt Line Rd",
-    city: "Fayetteville",
-    state: "NE",
-    zip: 93576,
-    phone: "(007)-472-4711",
-    hour: club_hours,
-    owner: rand_owner(owners)
-  },
-  {
-    name: 'Tipsy',
-    category: category[:night_club],
-    address: "8553 Crockett St",
-    city: "Elko",
-    state: "IL",
-    zip: 14296,
-    phone: "(430)-276-2229",
-    hour: club_hours,
-    owner: rand_owner(owners)
   }
-])
+]) do |b|
+  b.owner = rand_owner(owners)
+  b.monday_open = '09:00'
+  b.monday_close = '22:00'
+  b.tuesday_open = '09:00'
+  b.tuesday_close = '22:00'
+  b.wednesday_open =  '09:00'
+  b.wednesday_close = '22:00'
+  b.thursday_open =  '09:00'
+  b.thursday_close =  '22:00'
+  b.friday_open =  '09:00'
+  b.friday_close = '22:00'
+end
 
+businesses += Business.create([{
+  name: 'Get Lit',
+  category: category[:night_club],
+  address: "9504 Mockingbird Hill",
+  city: "Jackson",
+  state: "SC",
+  zip: 89866,
+  phone: "(006)-532-9475"
+},
+{
+  name: 'Firehouse',
+  category: category[:night_club],
+  address: "1163 First Street",
+  city: "Lafayette",
+  state: "NV",
+  zip: 27110,
+  phone: "(551)-014-9983"
+},
+{
+  name: 'Space X',
+  category: category[:night_club],
+  address: "9280 Brown Terrace",
+  city: "Nampa",
+  state: "VT",
+  zip: 61144,
+  phone: "(050)-505-0484"
+},
+{
+  name: 'Coders',
+  category: category[:night_club],
+  address: "6150 Hogan St",
+  city: "Princeton",
+  state: "SC",
+  zip: 63568,
+  phone: "(764)-782-0628"
+},
+{
+  name: 'Pipe UP',
+  category: category[:night_club],
+  address: "1472 Northaven Rd",
+  city: "Lowell",
+  state: "NE",
+  zip: 59892,
+  phone: "(019)-768-6365"
+},
+{
+  name: 'Turn Up',
+  category: category[:night_club],
+  address: "431 Green Rd",
+  city: "Bernalillo",
+  state: "S.D.",
+  zip: 37349,
+  phone: "(145)-336-5088"
+},
+{
+  name: 'Day N Nite',
+  category: category[:night_club],
+  address: "534 W Belt Line Rd",
+  city: "Fayetteville",
+  state: "NE",
+  zip: 93576,
+  phone: "(007)-472-4711"
+},
+{
+  name: 'Tipsy',
+  address: "8553 Crockett St",
+  city: "Elko",
+  state: "IL",
+  zip: 14296,
+  phone: "(430)-276-2229"
+}
+]) do |b| 
+  b.category = category[:night_club]
+  b.owner = rand_owner(owners)
+  b.friday_open = '19:00'
+  b.friday_close = '24:00'
+  b.saturday_open = '19:00'
+  b.saturday_close = '24:00'
+end
 
 #===============================================
 # Reviews seed 
@@ -1037,10 +913,10 @@ def rand_low_rating
     when  96..100   then '5'
   end
 end
-def rand_review(rating)
-  reviews = reviews[rating.to_sym]
-  reviews[0..reviews.length]
-end
+# def rand_review(rating)
+#   reviews = reviews[rating.to_sym]
+#   reviews[0..reviews.length]
+# end
 
 
 

@@ -1,0 +1,7 @@
+<%col_size ||= 'is-3'%>
+<%label ||= nil%>
+
+<div class="field column <%= col_size%>">
+  <%= f.label name, label, class: "label" %>
+  <%= f.time_field name, class: "input" %>
+</div>

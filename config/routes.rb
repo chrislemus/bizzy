@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :categories
-  resources :hours
+  # resources :categories
   # resources :reviews
   # resources :businesses
   # resources :users
@@ -14,6 +13,9 @@ Rails.application.routes.draw do
   root 'businesses#index'
   
   get '/auth/:provider/callback', to: 'sessions#omniauth'
+
+  get '/business-listings', to: 'businesses#business_listings', as: 'business_listings'
+  resources :businesses, only: [:new, :create, :edit, :update, :destroy]
 
   resources :businesses, only: [:show] do
     resources :reviews, only: [:index, :new, :create]

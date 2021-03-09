@@ -1,26 +1,5 @@
 <div class='container  is-max-desktop'>
   <%@businesses.each do |biz|%>
-  <div class='box columns mb-6'>
-    <div class='column '>
-      <h6 class='title is-6 mb-1'> <%=biz.name%> </h6>
-      <p class='is-size-5 has-text-success mb-3'> <%=biz.avg_rating_with_star%> </p>
-      <p class='is-size-7 has-text-weight-semibold	'> <%=biz.category.name%> </p>
-    </div>
-    <div class='column'>
-      <p class='is-size-7'> <%=biz.phone%> </p>
-      <p class='is-size-7'> <%=biz.address%> </p>
-      <p class='is-size-7'> <%=biz.city%> <%=biz.state%> <%=biz.zip%> </p>
-      <p class='is-size-7 has-text-weight-semibold'>
-        <%=biz.open? ? 'OPEN' : 'CLOSED'%>
-        <%=biz.today_hours%>
-      </p>
-    </div>
-    <div class='column is-5 has-text-right	'>
-      <%biz.reviews_3.each do |r|%>
-      <p class='is-size-7'> "<%=r%>" </p>
-      <%end%>
-      <%= link_to "view more", business_reviews_path(biz), class: 'mt-3 ' %>
-    </div>
-  </div>
+  <%= render partial: "business_card", locals: {biz: biz} %>
   <%end%>
 </div>

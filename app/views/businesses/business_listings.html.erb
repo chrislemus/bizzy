@@ -1,0 +1,14 @@
+<div class='container  is-max-desktop'>
+  <div class='columns is-vcentered mb-5'>
+    <div class='column'>
+      <h1>My Business Dashboard</h1>
+    </div>
+    <div class='column is-narrow'>
+      <%= link_to "+", new_business_path, class: 'button is-primary ' %>
+    </div>
+  </div>
+
+  <%@businesses.each do |biz|%>
+  <%= render partial: "business_card", locals: {biz: biz, owner: true} %>
+  <%end%>
+</div>

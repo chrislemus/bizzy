@@ -17,6 +17,12 @@ class User < ApplicationRecord
     full_name
   end
 
+  def owner?
+    !businesses.empty?
+  end
+
+  
+
 end
 
 

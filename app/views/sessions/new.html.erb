@@ -1,31 +1,15 @@
-<div class='columns mt-3 mx-4'>
-  <div class='column is-8 is-offset-2 box p-6'>
-    <%= form_tag '/session', method: :post, class: ' container columns is-multiline' do %>
+<%= form_with url: '/session', method: :post, class: 'columns is-multiline' do %>
 
-    <div class="column is-12">
-      <h1 class='title has-text-centered mb-4'>Sign In</h1>
-    </div>
+<%= render partial: "forms/title_err_msg", locals: {title: 'Sign In'} %>
 
-    <div class="field column is-12">
-      <p class='has-text-danger	'> <%= flash[:message]%> </p>
-    </div>
+<%= render partial: "forms/text_field", locals: { name: :email} %>
 
+<%= render partial: "forms/text_field", locals: { name: :password} %>
 
-    <div class="field column is-6">
-      <%= label_tag :email, "Email", class: "label" %>
-      <%= text_field_tag :email, nil, class: "input" %>
-    </div>
-    <div class="field column is-6">
-      <%= label_tag :password, "Password", class: "label" %>
-      <%= text_field_tag :password, nil, class: "input" %>
-    </div>
-
-    <div class="column is-12">
-      <%= submit_tag "Sign In", class: "button is-info mr-3" %>
-    </div>
-
-    <% end %>
-
-    <%= button_to "Log in with Google", '/auth/google_oauth2', class: "button is-danger" %>
-  </div>
+<div class="column is-12">
+  <%= submit_tag "Sign In", class: "button is-info mr-3" %>
 </div>
+
+<% end %>
+
+<%= button_to "Log in with Google", '/auth/google_oauth2', class: "button is-danger" %>

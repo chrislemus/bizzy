@@ -7,4 +7,5 @@ class Review < ApplicationRecord
     rating.times {stars += '★'}
     "#{stars} #{rating}"
   end
+
 end

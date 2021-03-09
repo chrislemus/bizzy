@@ -2,7 +2,15 @@ class Business < ApplicationRecord
   has_many :reviews
   belongs_to :owner, :class_name => "User"
   belongs_to :category
-  belongs_to :hour
+
+  validates :name, length: {minimum: 1}
+  validates :phone, presence: true
+  validates :category, presence: true
+  validates :address, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip, presence: true
+
 
   def full_address
     "#{address}, #{city}, #{state} #{zip}"
@@ -18,9 +26,9 @@ class Business < ApplicationRecord
   def today_hours ##need refactor
     today = Date.today.strftime("%A").downcase
     
-    if hour["#{today}_open"]
-      opening = hour["#{today}_open"].strftime("%-I%p")
-      closing = hour["#{today}_close"].strftime("%-I%p")
+    if self["#{today}_open"]
+      opening = self["#{today}_open"].strftime("%-I%p")
+      closing = self["#{today}_close"].strftime("%-I%p")
       "#{opening} - #{closing}"
     else
       'TODAY'
@@ -30,9 +38,9 @@ class Business < ApplicationRecord
 
   def open? ##need refactor
     today = Date.today.strftime("%A").downcase
-    if hour["#{today}_open"]
-      opening = hour["#{today}_open"].strftime( "%H%M" )
-      closing = hour["#{today}_close"].strftime( "%H%M" )
+    if self["#{today}_open"]
+      opening = self["#{today}_open"].strftime( "%H%M" )
+      closing = self["#{today}_close"].strftime( "%H%M" )
       Time.now.strftime( "%H%M" ).between?(opening, closing)
     else
       false

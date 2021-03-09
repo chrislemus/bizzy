@@ -1,0 +1,32 @@
+<%= form_with model: business, class: 'columns is-multiline'  do |f| %>
+
+<%= render partial: "forms/title_err_msg", locals: {title: "Updates for #{@business.name}"} %>
+
+<%= render partial: "forms/text_field", locals: {f: f, name: :name,label: 'Business Name'} %>
+<%= render partial: "forms/text_field", locals: {f: f, name: :phone,label: 'Business Phone'} %>
+
+<div class="column is-6">
+  <%= f.label :category, 'Business Category', class: "label" %>
+  <div class="select">
+    <%=f.collection_select  :category_id, Category.all, :id, :name %>
+  </div>
+</div>
+
+<%= render partial: "forms/text_field", locals: {f: f, name: :address,col_size: 'is-12'} %>
+<%= render partial: "forms/text_field", locals: {f: f, name: :city,col_size: 'is-5'} %>
+<%= render partial: "forms/text_field", locals: {f: f, name: :state,col_size: 'is-3'} %>
+<%= render partial: "forms/text_field", locals: {f: f, name: :zip,col_size: 'is-4'} %>
+
+<%Date::DAYNAMES.rotate(1).each do |day|%>
+<%day = day.downcase%>
+<%= render partial: "forms/time_input", locals: {f: f, name: "#{day}_open"} %>
+<%= render partial: "forms/time_input", locals: {f: f, name: "#{day}_close"} %>
+<div class="column is-6 "></div>
+<%end%>
+
+<%=f.hidden_field :owner_id%>
+
+<div class="column is-12 mt-5">
+  <%= f.submit class: "button is-info mr-3" %>
+</div>
+<% end %>
