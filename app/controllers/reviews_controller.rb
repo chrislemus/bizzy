@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :verify_user, only: [:new, :create]
+  # before_action :verify_user, only: [:new, :create]
   layout "forms", only: [:new, :create]
 
   def index
@@ -14,21 +15,25 @@ class ReviewsController < ApplicationController
     # @review = @business.reviews.build
     # byebug
   end
+
+  def destroy
+    Review.delete(params[:id])
+    flash[:alert] = 'your review has been deleted'
+    redirect_to user_reviews_path
+  end
+
+  def user_reviews
+    redirect_to root_path unless logged_in
+    @reviews = current_user.reviews
+  end
   
   def create
-    # byebug
-    #validateions for empty field!!
-    #validateions for empty field!!
-    #validateions for empty field!!
-    #validateions for empty field!!
     @business = Business.find(params[:business_id])
-
     user = User.find(session[:user_id])
-
     @review = Review.new(review_params)
-    # byebug
     @review.user = user
     if @review.save
+      flash[:alert] = "Congrats! Your review for #{@business.name} has been added"
       redirect_to business_reviews_path(params[:business_id])
     else
       flash[:message] = @review.errors.full_messages.join(", ")

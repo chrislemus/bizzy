@@ -1,13 +1,11 @@
 <div class='container mt-5 is-max-desktop'>
-  <%= link_to "Home", root_path, class: 'button ' %>
+  <%= link_to "Home", root_path, class: 'button is-primary' %>
 
-  <%unless logged_in && current_user.id == @business.owner.id %>
-  <%= link_to "Write a review", new_business_review_path, class: 'button is-primary' %>
-  <%end%>
 
-  <h1 class='title my-5'><%=@business.name%> Reviews</h1>
+
+  <h1 class='title mt-5'>My reviews</h1>
   <%@reviews.each do |review|%>
-  <article class="media">
+  <article class="media is-vcentered">
     <figure class="media-left">
       <p class="image is-34x34 ">
         <img src=<%="#{review.user.thumbnail}"%>>
@@ -15,16 +13,21 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <div class='columns'>
+        <div class='columns  is-multiline'>
           <div class='column'>
             <p>
-              <strong><%=review.user.full_name%></strong>
+              <strong><%=review.user.full_name%> </strong>
+              <br>
+              Business: <%= link_to review.business.name,  business_reviews_path(review.business) %>
               <br>
               <%=review.content%>
             </p>
           </div>
           <div class='column is-narrow '>
             <p class='has-text-success'><%=review.rating_with_stars%></p>
+            <%= link_to "delete", review_path(review), method:'delete', class: 'button is-danger is-inverted' %>
+
+
           </div>
         </div>
 

@@ -11,9 +11,6 @@ class BusinessesController < ApplicationController
     @businesses = Business.query(@query, results_per_page,@current_page)
   end 
 
-  def show
-  end
-
   def business_listings
     if current_user.owner?
       @businesses = current_user.businesses

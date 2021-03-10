@@ -1,7 +1,7 @@
 <nav class="max-width notification is-primary is-radiusless mb-0">
   <div class=" columns is-centered is-vcentered">
     <div class="column is-one-quarter">
-      <%= link_to "Bizzy", root_path, class: 'is-size-3 has-text-weight-boldutton'%>
+      <%= link_to "Bizzy", root_path, class: 'is-size-3 logo has-text-weight-bold'%>
     </div>
     <div class="column">
     </div>
@@ -9,14 +9,13 @@
     <div class="dropdown is-hoverable">
       <div class="dropdown-trigger">
         <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu4">
-          <%=current_user.owner? ? 'owner' : 'not owner'%>
-          <span class='has-text-weight-semibold is-capitalized'><%=session[:user_id]%> <%=user_full_name%></span>
+          <span class='has-text-weight-semibold is-capitalized'><%=user_full_name%></span>
         </button>
       </div>
       <div class="dropdown-menu" id="dropdown-menu3" role="menu">
         <div class="dropdown-content">
-          <%= link_to 'My business', business_listings_path, class: 'dropdown-item' %>
-
+          <%= link_to 'My reviews', user_reviews_path, class: 'dropdown-item' %>
+          <%= link_to 'Business', business_listings_path, class: 'dropdown-item' %>
           <hr class="dropdown-divider">
           <%= link_to "Log Out", session_path,method:'delete', class: 'dropdown-item' %>
         </div>

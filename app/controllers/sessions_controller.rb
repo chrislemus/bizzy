@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   layout "forms", only: [:new, :create]
+  skip_before_action :authorized_user
   def omniauth
     auth = request.env['omniauth.auth']
     @user = User.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|

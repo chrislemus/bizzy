@@ -30,33 +30,38 @@ class Business < ApplicationRecord
     "#{stars} #{avg_rating}"
   end
 
-  def today_hours ##need refactor
-    today = Date.today.strftime("%A").downcase
-    if self["#{today}_open"]
-      opening = self["#{today}_open"].strftime("%-I%p")
-      closing = self["#{today}_close"].strftime("%-I%p")
-      "#{opening} - #{closing}"
-    else
-      'TODAY'
-    end
+  def today
+    Date.today.strftime("%A").downcase
+  end
 
+  def get_hours
+    Date::DAYNAMES.rotate(1).map do |day|
+      day = day.downcase
+      opening = self["#{day}_open"]
+      closing = self["#{day}_close"]
+
+      if opening
+        "#{day.capitalize[0..2]} #{opening.strftime("%-I%p")} - #{closing.strftime("%-I%p")}"
+      else
+        "#{day.capitalize[0..2]} close"
+      end
+    end
   end
 
   def open? ##need refactor
-    today = Date.today.strftime("%A").downcase
-    if self["#{today}_open"]
-      opening = self["#{today}_open"].strftime( "%H%M" )
-      closing = self["#{today}_close"].strftime( "%H%M" )
-      Time.now.strftime( "%H%M" ).between?(opening, closing)
+    opening = self["#{today}_open"]
+    closing = self["#{today}_close"]
+    if opening
+      Time.now.strftime( "%H%M" ).between?(opening.strftime( "%H%M" ), closing.strftime( "%H%M" ))
     else
       false
     end
+    
   end
 
-  def reviews_3
-    reviews = self.reviews.limit(3)
-    reviews.map{|r| r.content}
-    # review&.content ? review&.content : nil
+
+  def reviews_2
+    self.reviews.limit(2).map{|r| r.content}
   end
 
 end

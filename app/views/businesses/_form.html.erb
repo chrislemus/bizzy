@@ -14,8 +14,20 @@
 
 <%= render partial: "forms/text_field", locals: {f: f, name: :address,col_size: 'is-12'} %>
 <%= render partial: "forms/text_field", locals: {f: f, name: :city,col_size: 'is-5'} %>
-<%= render partial: "forms/text_field", locals: {f: f, name: :state,col_size: 'is-3'} %>
-<%= render partial: "forms/text_field", locals: {f: f, name: :zip,col_size: 'is-4'} %>
+
+<div class="column is-3">
+  <label class="label" for="business_state">State</label>
+  <div class="select">
+    <select name="business[state]" id="business_state">
+      <%us_states.each do |state|%>
+      <%selected = business[:state] == state[0] ? 'selected' : ''%>
+      <option value=<%=state[0]%> <%=selected%>><%=state[1]%></option>
+      <%end%>
+    </select>
+  </div>
+</div>
+
+<%= render partial: "forms/text_field", locals: {f: f, name: :zip,col_size: 'is-3'} %>
 
 <%Date::DAYNAMES.rotate(1).each do |day|%>
 <%day = day.downcase%>
