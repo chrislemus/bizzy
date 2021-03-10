@@ -34,6 +34,14 @@ class Business < ApplicationRecord
     Date.today.strftime("%A").downcase
   end
 
+  def opening
+    self["#{today}_open"]
+  end
+
+  def closing
+    self["#{today}_close"]
+  end
+
   def get_hours
     Date::DAYNAMES.rotate(1).map do |day|
       day = day.downcase
@@ -48,20 +56,13 @@ class Business < ApplicationRecord
     end
   end
 
-  def open? ##need refactor
-    opening = self["#{today}_open"]
-    closing = self["#{today}_close"]
+  def open? 
     if opening
       Time.now.strftime( "%H%M" ).between?(opening.strftime( "%H%M" ), closing.strftime( "%H%M" ))
     else
       false
     end
     
-  end
-
-
-  def reviews_2
-    self.reviews.limit(2).map{|r| r.content}
   end
 
 end

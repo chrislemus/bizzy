@@ -16,10 +16,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:message] = @user.errors.full_messages.join(", ")
-      render 'new'
+      router('new', :message, @user.errors.full_messages.join(", "))
     end
-
   end
 
   def new
@@ -32,8 +30,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash.now[:message] = 'incorrect email/password'
-      render 'new'
+      router('new', :message,'incorrect email/password')
     end
   end
 

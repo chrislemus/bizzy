@@ -2,13 +2,13 @@ class BusinessesController < ApplicationController
   layout "forms", only: [:new, :create, :edit]
 
   def index
-    @query = params[:query]
+    query = params[:query]
     @params = {}
-    @params[:query] = @query if @query && !@query.empty?
+    @params[:query] = params[:query] if params[:query]
     results_per_page = 10
     @current_page = params[:page] ? params[:page].to_i : 1
-    @pages_count = Business.page_count(@query, results_per_page)
-    @businesses = Business.query(@query, results_per_page,@current_page)
+    @pages_count = Business.page_count(query, results_per_page)
+    @businesses = Business.query(query, results_per_page,@current_page)
   end 
 
   def business_listings
@@ -17,13 +17,11 @@ class BusinessesController < ApplicationController
     else
       redirect_to new_business_path
     end
-    
   end
 
   def destroy
     Business.delete(params[:id])
-    flash[:alert] = 'business listing deleted'
-    redirect_to business_listings_path
+    router(business_listings_path, :alert, 'business listing deleted')
   end
 
   def edit
@@ -33,8 +31,7 @@ class BusinessesController < ApplicationController
   def update
     business = Business.find_by(id: params[:id])
     business.update(business_params)
-    flash[:alert] = "changes have been applied to #{business.name}"
-    redirect_to business_listings_path
+    router(business_listings_path, :alert, "changes have been applied to #{business.name}")
   end
 
   def new
@@ -48,8 +45,7 @@ class BusinessesController < ApplicationController
       flash[:alert] = "Your new business has been create: #{@business.name}"
       redirect_to business_listings_path
     else
-      flash.now[:message] = @business.errors.full_messages.join(', ')
-      render 'new'
+      router('new', :message, @business.errors.full_messages.join(', '))
     end
   end
 

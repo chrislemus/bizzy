@@ -25,3 +25,7 @@
 .logo {
   text-decoration: none !important;
 }
+
+.field_with_errors input {
+  border-color: red;
+}
