@@ -1,4 +1,7 @@
 class Business < ApplicationRecord
+  has_many :reviews
+  belongs_to :owner, :class_name => "User"
+  belongs_to :category
   scope :query, -> (query, results_per_page,current_page) { 
     where("name LIKE ?", "%#{query}%")
     .limit(results_per_page)
@@ -6,9 +9,6 @@ class Business < ApplicationRecord
   }
   scope :page_count, -> (query,results_per_page) { (where("name LIKE ?", "%#{query}%").count/ results_per_page).ceil}
 
-  has_many :reviews
-  belongs_to :owner, :class_name => "User"
-  belongs_to :category
 
   validates :name, length: {minimum: 1}
   validates :phone, presence: true
