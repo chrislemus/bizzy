@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/session/', to: 'sessions#destroy'
 
   root 'businesses#index'
+  post '/', to: 'businesses#index', as: 'query'
   
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 

@@ -1,2 +1,2 @@
-<%= render "form", {business: @business} %>
+<%= render "form", {business: @business, title: "Updates for #{@business.name}"} %>
 <%= link_to "Delete", business_path,method:'delete', class: 'button is-danger mt-6' %>

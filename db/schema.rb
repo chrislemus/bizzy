@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_134323) do
 
   create_table "businesses", force: :cascade do |t|
     t.integer "owner_id"
-    t.integer "hour_id"
     t.integer "category_id"
     t.string "name"
     t.string "phone"
@@ -82,7 +81,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_134323) do
     t.string "password_digest"
     t.string "uid"
     t.string "provider"
-    t.boolean "owner", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

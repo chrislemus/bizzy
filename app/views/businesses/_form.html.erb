@@ -1,6 +1,6 @@
 <%= form_with model: business, class: 'columns is-multiline'  do |f| %>
 
-<%= render partial: "forms/title_err_msg", locals: {title: "Updates for #{@business.name}"} %>
+<%= render partial: "forms/title_err_msg", locals: {title: title} %>
 
 <%= render partial: "forms/text_field", locals: {f: f, name: :name,label: 'Business Name'} %>
 <%= render partial: "forms/text_field", locals: {f: f, name: :phone,label: 'Business Phone'} %>

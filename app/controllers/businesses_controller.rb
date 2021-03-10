@@ -2,8 +2,14 @@ class BusinessesController < ApplicationController
   layout "forms", only: [:new, :create, :edit]
 
   def index
-    @businesses = Business.all
-  end
+    @query = params[:query]
+    @params = {}
+    @params[:query] = @query if @query && !@query.empty?
+    results_per_page = 10
+    @current_page = params[:page] ? params[:page].to_i : 1
+    @pages_count = Business.page_count(@query, results_per_page)
+    @businesses = Business.query(@query, results_per_page,@current_page)
+  end 
 
   def show
   end
@@ -19,6 +25,7 @@ class BusinessesController < ApplicationController
 
   def destroy
     Business.delete(params[:id])
+    flash[:alert] = 'business listing deleted'
     redirect_to business_listings_path
   end
 
@@ -29,6 +36,7 @@ class BusinessesController < ApplicationController
   def update
     business = Business.find_by(id: params[:id])
     business.update(business_params)
+    flash[:alert] = "changes have been applied to #{business.name}"
     redirect_to business_listings_path
   end
 
@@ -40,6 +48,7 @@ class BusinessesController < ApplicationController
     @business = Business.new(business_params)
     @user = User.find(params[:business][:owner_id])
     if @business.save
+      flash[:alert] = "Your new business has been create: #{@business.name}"
       redirect_to business_listings_path
     else
       flash.now[:message] = @business.errors.full_messages.join(', ')

@@ -1,5 +1,50 @@
-<div class='container  is-max-desktop'>
-  <%@businesses.each do |biz|%>
-  <%= render partial: "business_card", locals: {biz: biz} %>
-  <%end%>
-</div>
+  <section class="hero is-medium homepage-hero">
+
+    <div class="hero-body has-text-centered">
+      <p class="title has-text-primary	">
+        Your Local Guide
+      </p>
+      <p class="subtitle">
+        find all the hidden gems around town
+      </p>
+      <div class='columns is-multiline'>
+        <div class='column is-4 is-offset-4'>
+          <%= form_with url: query_path, method: :get, class: 'columns ' do %>
+          <div class='column'>
+            <input onkeydown="if(this.value == '') {this.name = 'query'} else {this.name = 'query'}" class='input' value=<%="#{params[:query]}"%>>
+          </div>
+          <div class="column is-narrow">
+            <%= submit_tag "▶", name:nil, class: "button is-info mr-3" %>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class='container is-fluid'>
+    <p><%=@pages_count%></p>
+    <p><%=@current_page%></p>
+    <div class='container is-max-desktop'>
+
+      <nav class="pagination" role="navigation" aria-label="pagination">
+
+        <ul class="pagination-list">
+          <%[*1..@pages_count].each do |page|%>
+          <%active = @current_page == page ? 'is-current' : ''%>
+          <%@params[:page] = page%>
+          <li>
+            <%= link_to page, query_path(@params), class: "pagination-link #{active}" %>
+          </li>
+          <%end%>
+        </ul>
+      </nav>
+
+      <%@businesses.each do |biz|%>
+      <%= render partial: "business_card", locals: {biz: biz} %>
+      <%end%>
+
+
+    </div>
+
+  </div>

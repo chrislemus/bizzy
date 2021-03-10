@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAGA,AAAA,cAAc,AAAC,CACb,UAAU,CAAE,kBAAkB,CAC9B,mBAAmB,CAAE,aAAa,CAClC,eAAe,CAAE,KAAK,CACvB",
     "sources": [
         "businesses.scss"
     ],

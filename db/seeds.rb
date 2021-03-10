@@ -926,7 +926,8 @@ businesses.each_with_index do |biz, index|
   users.shuffle.take(rand(7...21)).each do |user|
     rating = bad_businesses.include?(index) ? rand_low_rating : rand_rating
     selected_reviews = reviews[rating]
-    review = selected_reviews[rand(0..(selected_reviews.length))]
+    rand_review_idx = rand(0..(selected_reviews.length - 1))
+    review = selected_reviews[rand_review_idx]
     Review.create(
       rating: rating,
       content: review,

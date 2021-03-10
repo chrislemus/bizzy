@@ -14,11 +14,18 @@
 <body>
   <%= render  "layouts/nav" %>
 
-  <%= image_tag "dining.jpg" %>
-  <div class='container is-fluid'>
-    <%= yield %>
-
+  <%if flash[:alert]%>
+  <div class='px-5 notification-wrapper'>
+    <div class="notification container is-max-desktop is-info ">
+      <button onclick="this.parentNode.style.display='none'" class="delete"></button>
+      <%=flash[:alert]%>
+    </div>
   </div>
+  <%end%>
+
+
+  <%= yield %>
+
 </body>
 
 </html>
