@@ -1,24 +1,15 @@
-# README
+# Bizzy - online business directory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Bizzy is a online business directory that helps people connect with local businesses. Business listings included contact information, operation hours, and reviews.
 
-Things you may want to cover:
+## Initial set up commands
 
-* Ruby version
+1. bundle - installs all depencies
+2. rake db:migrate - creates a new migration
+3. bin/rails db:seed - adds dummy date to local database
 
-* System dependencies
+### Configuration: Enable third-party authentication
 
-* Configuration
+This app uses Google Auth API to enable third party authentication. `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are required in the .env file within the project directory for third party authentication to work.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### run `rails s` to start a local server
