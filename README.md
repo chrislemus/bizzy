@@ -5,8 +5,8 @@ Bizzy is a online business directory that helps people connect with local busine
 ## Initial set up commands
 
 1. `bundle` - installs all gems
-2. `rails db:migrate` - creates a new migration
-3. `rails db:seed`  - adds dummy date to local database
+2. `rake db:migrate` - creates a new migration
+3. `rake db:seed`  - adds dummy date to local database
 
 ### Configuration: Enable third-party authentication
 
