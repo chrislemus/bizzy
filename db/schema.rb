@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_03_05_134323) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "businesses", force: :cascade do |t|
     t.integer "owner_id"
     t.integer "category_id"
@@ -41,25 +44,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_134323) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "hours", force: :cascade do |t|
-    t.time "monday_open"
-    t.time "monday_close"
-    t.time "tuesday_open"
-    t.time "tuesday_close"
-    t.time "wednesday_open"
-    t.time "wednesday_close"
-    t.time "thursday_open"
-    t.time "thursday_close"
-    t.time "friday_open"
-    t.time "friday_close"
-    t.time "saturday_open"
-    t.time "saturday_close"
-    t.time "sunday_open"
-    t.time "sunday_close"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -5,7 +5,7 @@
     <%= render partial: "forms/text_field", locals: {f: f, name: :first_name} %>
     <%= render partial: "forms/text_field", locals: {f: f, name: :last_name} %>
     <%= render partial: "forms/text_field", locals: {f: f, name: :email} %>
-    <%= render partial: "forms/text_field", locals: {f: f, name: :password} %>
+    <%= render partial: "forms/password_field", locals: {f: f, name: :password} %>
 
     <div class="column is-12">
       <%= f.submit class: "button is-info mr-3" %>

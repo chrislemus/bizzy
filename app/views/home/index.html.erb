@@ -1,0 +1,27 @@
+<div class='demo'>
+  <%= form_with url: root_path, method: :get do %>
+
+  <input onkeydown="if(this.value == '') {this.name = 'query'} else {this.name = 'query'}" value=<%="#{@params[:query]}"%>>
+  <%= submit_tag "Search", name:nil %>
+
+  <%end%>
+
+  <ul>
+    <%[*1..@pages_count].each do |page|%>
+
+    <%@params[:page] = page%>
+    <li class=<%="#{@current_page == page ? 'active' : ''}"%>>
+      <%= link_to page, root_path(@params)%>
+    </li>
+
+    <%end%>
+  </ul>
+
+  <%@results.each do |result|%>
+
+  <div class='results'>
+    <%=result%>
+  </div>
+
+  <%end%>
+</div>

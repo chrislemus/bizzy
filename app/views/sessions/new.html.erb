@@ -1,10 +1,12 @@
 <%= form_with url: '/session', method: :post, class: 'columns is-multiline' do %>
 
 <%= render partial: "forms/title_err_msg", locals: {title: 'Sign In'} %>
-
+<div class='column is-12 has-text-centered'>
+  <p><strong>Email</strong> owner1@example.com | <strong>Password</strong> 12345678</p>
+</div>
 <%= render partial: "forms/text_field", locals: { name: :email} %>
 
-<%= render partial: "forms/text_field", locals: { name: :password} %>
+<%= render partial: "forms/password_field", locals: { name: :password} %>
 
 <div class="column is-12">
   <%= submit_tag "Sign In", class: "button is-info mr-3" %>

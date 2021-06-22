@@ -7,12 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Business.delete_all
 User.delete_all
-Hour.delete_all
 Review.delete_all
 Category.delete_all
 
 
-#===============================================
+#==================================f=============
 # Owners seed 
 #===============================================
 owners = User.create([
@@ -913,10 +912,7 @@ def rand_low_rating
     when  96..100   then '5'
   end
 end
-# def rand_review(rating)
-#   reviews = reviews[rating.to_sym]
-#   reviews[0..reviews.length]
-# end
+
 
 
 
