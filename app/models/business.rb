@@ -3,11 +3,11 @@ class Business < ApplicationRecord
   belongs_to :owner, :class_name => "User"
   belongs_to :category
   scope :query, -> (query, results_per_page,current_page) { 
-    where("name LIKE ?", "%#{query}%")
+    where("LOWER(name) LIKE ?", "%#{query}%")
     .limit(results_per_page)
     .offset((results_per_page * current_page) - results_per_page) 
   }
-  scope :page_count, -> (query,results_per_page) { (where("name LIKE ?", "%#{query}%").count/ results_per_page).ceil}
+  scope :page_count, -> (query,results_per_page) { (where("LOWER(name) LIKE ?", "%#{query}%").count/ results_per_page).ceil}
 
 
   validates :name, length: {minimum: 1}

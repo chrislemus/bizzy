@@ -3,6 +3,7 @@ class BusinessesController < ApplicationController
 
   def index
     query = params[:query]
+    query = query.downcase if query
     @params = {}
     @params[:query] = params[:query] if params[:query]
     results_per_page = 10
