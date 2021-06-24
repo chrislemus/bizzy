@@ -1,5 +1,5 @@
 # Bizzy - online business directory
->Live Home Cleaning Service site with custom booking form. Clients can get a customized quote or book their service using the custom booking form. The form has increased conversion rate by more than 80% compared to initial prototype. And connects to multiple external APIs, ActiveCampaign, Stripe, and Business CRM
+>Local business listings WebApp built with Ruby on Rails. App allows users to sign in using third party authentication(eg. Google). Search for businesses, write reviews, or add your business to the sites directory.
 
 
 **Table of Contents**  
