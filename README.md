@@ -1,6 +1,5 @@
 # Bizzy - online business directory
->Local business listings WebApp built with Ruby on Rails. App allows users to sign in using third party authentication(eg. Google). Search for businesses, write reviews, or add your business to the sites directory.
-
+>Local business listings WebApp built with Ruby on Rails. The app allows users to sign in using third-party authentication(e.g., Google). Search for businesses, write reviews or add your business to the site's directory.
 
 **Table of Contents**  
 
@@ -26,9 +25,9 @@
 - This app uses Google Auth API to enable third party authentication. You must create a google developer account and provide `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` variables in the enviroment file within the project directory for third party authentication to work.
 
 ## Operation
-Browse business listings in the sites main landing page. 
+Browse business listings on the site's main landing page. 
 
-View all reviews for a certain business by clicking `view all` text link under the business name. 
+View all reviews for a specific business by clicking the `view all` text link under the business name. 
 
 ## Live Preview
 [Check out the live demo here!](https://www.chrislemus.io/project-demo/3)
