@@ -1,0 +1,4 @@
+{
+  "buildCommand": "bundle & rails db:migrate & rails db:seed & rails webpacker:install & rails s",
+  "installCommand": "bash -s stable --ruby"
+}
